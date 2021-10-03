@@ -1,0 +1,8 @@
+tz.example.com {
+	@websockets {
+		header Connection *Upgrade*
+		header Upgrade websocket
+	}
+
+	reverse_proxy /* tcp://brook-service.default:9999
+}
