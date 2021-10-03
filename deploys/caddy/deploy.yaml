@@ -18,6 +18,12 @@ spec:
         - name: caddyfile
           configMap:
             name: caddyfile
+        - name: data
+          persistentVolumeClaim:
+            claimName: caddy-data-pvc
+        - name: config
+          persistentVolumeClaim:
+            claimName: caddy-config-pvc
       containers:
       - name: caddy
         image: caddy:2-alpine
@@ -26,6 +32,12 @@ spec:
         volumeMounts:
           - name: caddyfile
             mountPath: "/etc/caddy"
+            readOnly: false
+          - name: data
+            mountPath: "/data"
+            readOnly: false
+          - name: config
+            mountPath: "/config"
             readOnly: false
         ports:
         - name: http

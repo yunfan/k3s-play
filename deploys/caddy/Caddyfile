@@ -6,3 +6,12 @@ tz.example.com {
 
 	reverse_proxy /* tcp://brook-service.default:9999
 }
+
+git.example.com {
+	@websockets {
+		header Connection *Upgrade*
+		header Upgrade websocket
+	}
+
+	reverse_proxy /* http://gogs-service.default:3000
+}
