@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paste-deploy
+  labels:
+    app: paste
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paste
+  template:
+    metadata:
+      labels:
+        app: paste
+    spec:
+      containers:
+      - name: paste 
+        image: jonnyan404/pasteme
+        stdin: true
+        tty: true
+        ports:
+        - name: listen
+          protocol: TCP
+          containerPort: 8000
+      nodeSelector:
+        kubernetes.io/hostname: lab
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: paste-service
+spec:
+  selector:
+    app: paste
+  ports:
+    - protocol: TCP
+      name: paste
+      targetPort: 8000
+      port: 8000

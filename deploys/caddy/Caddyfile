@@ -15,3 +15,12 @@ git.example.com {
 
 	reverse_proxy /* http://gogs-service.default:3000
 }
+
+paste.example.com {
+	@websockets {
+		header Connection *Upgrade*
+		header Upgrade websocket
+	}
+
+	reverse_proxy /* tcp://paste-service.default:8000
+}
