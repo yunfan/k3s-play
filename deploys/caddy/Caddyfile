@@ -24,3 +24,12 @@ paste.example.com {
 
 	reverse_proxy /* tcp://paste-service.default:8000
 }
+
+shell.example.com {
+	@websockets {
+		header Connection *Upgrade*
+		header Upgrade websocket
+	}
+
+	reverse_proxy /* tcp://wetty-service.default:3000
+}
