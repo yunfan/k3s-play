@@ -5,7 +5,10 @@ BASE=$(dirname $(realpath $0))
 echo ${BASE}
 cd ${BASE}
 
-ctl="kubectl"
+if [ -z $ctl ]; then
+    ctl="kubectl"
+fi
+
 cmname="wetty-entry"
 
 ${ctl} apply -f ./pvc.yaml

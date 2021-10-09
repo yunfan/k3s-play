@@ -5,7 +5,10 @@ BASE=$(dirname $(realpath $0))
 echo ${BASE}
 cd ${BASE}
 
-ctl="kubectl"
+if [ -z $ctl ]; then
+    ctl="kubectl"
+fi
+
 
 ${ctl} delete -f deploy.yaml
 ${ctl} create -f deploy.yaml
